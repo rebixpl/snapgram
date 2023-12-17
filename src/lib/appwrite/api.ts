@@ -103,7 +103,7 @@ export async function createPost(post: INewPost) {
     if (!uploadedFile) throw Error;
 
     // Get the file url
-    const fileUrl = getFilePreview(uploadedFile.$id);
+    const fileUrl = await getFilePreview(uploadedFile.$id);
 
     if (!fileUrl) {
       // delete the file from storage, because something
@@ -161,7 +161,7 @@ export async function getFilePreview(fileId: string) {
       appwriteConfig.storageId,
       fileId,
       2000, // width
-      500, // height
+      2000, // height
       "top", // gravity
       100 // quality
     );
