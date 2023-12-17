@@ -181,3 +181,16 @@ export async function deleteFile(fileId: string) {
     console.log(error);
   }
 }
+
+export async function getRecentPosts() {
+  const posts = await databases.listDocuments(
+    appwriteConfig.databaseId,
+    appwriteConfig.postCollectionId,
+    // filter posts, so we only get the most recent 20 posts
+    [Query.orderDesc("$createdAt"), Query.limit(20)]
+  );
+
+  if (!posts) throw Error;
+
+  return posts;
+}
