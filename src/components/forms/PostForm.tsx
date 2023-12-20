@@ -164,7 +164,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
             whitespace-nowrap"
             disabled={isLoadingCreate || isLoadingUpdate}
           >
-            {isLoadingCreate || (isLoadingUpdate && "Loading...")}
+            {isLoadingCreate || (isLoadingUpdate && "Loading... ")}
             {action} Post
           </Button>
         </div>
