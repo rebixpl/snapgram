@@ -10,6 +10,7 @@ import {
   createUserAccount,
   deleteSavedPost,
   getCurrentUser,
+  getPostById,
   getRecentPosts,
   likePost,
   savePost,
@@ -128,5 +129,14 @@ export const useGetCurrentUser = () => {
   return useQuery({
     queryKey: [QUERY_KEYS.GET_CURRENT_USER],
     queryFn: getCurrentUser,
+  });
+};
+
+export const useGetPostById = (postId: string) => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.GET_POST_BY_ID, postId],
+    queryFn: () => getPostById(postId),
+    // we want to fetch the data only if we are fetching it for another id
+    enabled: !!postId,
   });
 };
